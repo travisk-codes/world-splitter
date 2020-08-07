@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import './App.css'
 
 function App() {
-	const [randomNumber, setRandomNumber] = useState(0)
+	const [randomBoolean, setrandomBoolean] = useState(0)
 	const [isLoading, setIsLoading] = useState(false)
+	const [inputA, setInputA] = useState('')
+	const [inputB, setInputB] = useState('')
 
-	const fetchRandomNumber = async () => {
+	const fetchrandomBoolean = async () => {
 		setIsLoading(true)
 		try {
 			const response = await fetch(
@@ -13,9 +15,9 @@ function App() {
 			)
 			const json = await response.json()
 			if (json.data[0] < 128) {
-				setRandomNumber(0)
+				setrandomBoolean(0)
 			} else {
-				setRandomNumber(1)
+				setrandomBoolean(1)
 			}
 			setIsLoading(false)
 		} catch (e) {
@@ -27,14 +29,16 @@ function App() {
 		<div className='App'>
 			<h1>World Splitter</h1>
 			<label>
-				WORLD A<input />
+				WORLD A
+				<input value={inputA} onChange={(e) => setInputA(e.target.value)} />
 			</label>
 			<label>
-				WORLD B<input />
+				WORLD B
+				<input value={inputB} onChange={(e) => setInputB(e.target.value)} />
 			</label>
 			{isLoading ? 'Loading...' : ''}
-			{randomNumber}
-			<button onClick={fetchRandomNumber}>SPLIT</button>
+			{randomBoolean ? inputA : inputB}
+			<button onClick={fetchrandomBoolean}>SPLIT</button>
 		</div>
 	)
 }
