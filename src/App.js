@@ -4,6 +4,7 @@ import './App.css'
 function App() {
 	const [randomBoolean, setrandomBoolean] = useState(0)
 	const [isLoading, setIsLoading] = useState(false)
+	const [result, setResult] = useState('')
 	const [inputA, setInputA] = useState('')
 	const [inputB, setInputB] = useState('')
 
@@ -20,8 +21,25 @@ function App() {
 				setrandomBoolean(1)
 			}
 			setIsLoading(false)
+			getResult()
 		} catch (e) {
 			console.error(e.name, e.message)
+		}
+	}
+
+	const getResult = () => {
+		if (!inputA && !inputB) {
+			setResult('')
+			return
+		}
+		if (randomBoolean) {
+			setResult(inputA)
+		} else {
+			if (inputB) {
+				setResult(inputB)
+			} else {
+				setResult('Not ' + inputA)
+			}
 		}
 	}
 
@@ -40,8 +58,7 @@ function App() {
 					onChange={(e) => setInputB(e.target.value)}
 				/>
 			</label>
-			{isLoading ? 'Loading...' : ''}
-			{randomBoolean ? inputA : inputB ? inputB : 'Not ' + inputA}
+			{isLoading ? 'Splitting the Universe...' : result}
 			<button onClick={fetchrandomBoolean}>SPLIT</button>
 		</div>
 	)
