@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	React.useEffect(() => {
+		const fetchRandomNumber = async () => {
+			try {
+				const response = await fetch(
+					`https://qrng.anu.edu.au/API/jsonI.php?length=1&type=uint8`,
+				)
+				const json = await response.json()
+				console.log(json.data[0])
+			} catch (e) {
+				console.error(e.name, e.message)
+			}
+		}
+		fetchRandomNumber()
+	})
+	return (
+		<div className='App'>
+			<h1>World Splitter</h1>
+			<label>
+				WORLD A<input />
+			</label>
+			<label>
+				WORLD B<input />
+			</label>
+			<button>SPLIT</button>
+		</div>
+	)
 }
 
-export default App;
+export default App
