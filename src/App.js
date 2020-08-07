@@ -43,23 +43,41 @@ function App() {
 		}
 	}
 
+	const renderInputs = () => {
+		if (result) return
+		if (isLoading) return
+		return (
+			<>
+				<label>
+					WORLD A
+					<input value={inputA} onChange={(e) => setInputA(e.target.value)} />
+				</label>
+				<label>
+					WORLD B
+					<input
+						placeholder={inputA ? 'Not ' + inputA : ''}
+						value={inputB}
+						onChange={(e) => setInputB(e.target.value)}
+					/>
+				</label>
+			</>
+		)
+	}
+
+	const renderButton = () => {
+		if (isLoading) return
+		if (result) {
+			return <button onClick={() => setResult('')}>SPLIT AGAIN</button>
+		}
+		return <button onClick={fetchrandomBoolean}>SPLIT</button>
+	}
+
 	return (
 		<div className='App'>
 			<h1>World Splitter</h1>
-			<label>
-				WORLD A
-				<input value={inputA} onChange={(e) => setInputA(e.target.value)} />
-			</label>
-			<label>
-				WORLD B
-				<input
-					placeholder={inputA ? 'Not ' + inputA : ''}
-					value={inputB}
-					onChange={(e) => setInputB(e.target.value)}
-				/>
-			</label>
+			{renderInputs()}
 			{isLoading ? 'Splitting the Universe...' : result}
-			<button onClick={fetchrandomBoolean}>SPLIT</button>
+			{renderButton()}
 		</div>
 	)
 }
