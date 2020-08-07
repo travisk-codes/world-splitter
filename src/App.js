@@ -34,10 +34,14 @@ function App() {
 			</label>
 			<label>
 				WORLD B
-				<input value={inputB} onChange={(e) => setInputB(e.target.value)} />
+				<input
+					placeholder={inputA ? 'Not ' + inputA : ''}
+					value={inputB}
+					onChange={(e) => setInputB(e.target.value)}
+				/>
 			</label>
 			{isLoading ? 'Loading...' : ''}
-			{randomBoolean ? inputA : inputB}
+			{randomBoolean ? inputA : inputB ? inputB : 'Not ' + inputA}
 			<button onClick={fetchrandomBoolean}>SPLIT</button>
 		</div>
 	)
