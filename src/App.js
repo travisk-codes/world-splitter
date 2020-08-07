@@ -10,7 +10,11 @@ function App() {
 				`https://qrng.anu.edu.au/API/jsonI.php?length=1&type=uint8`,
 			)
 			const json = await response.json()
-			setRandomNumber(json.data[0])
+			if (json.data[0] < 128) {
+				setRandomNumber(0)
+			} else {
+				setRandomNumber(1)
+			}
 		} catch (e) {
 			console.error(e.name, e.message)
 		}
