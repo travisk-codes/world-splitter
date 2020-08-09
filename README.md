@@ -12,3 +12,4 @@
 - BUG not really looping bg
 - ~~say the world split ~X ns~~
 - pre-load svgs
+- BUG splash button loads before the rest
