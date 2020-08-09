@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './App.css'
 
 function App() {
+	const [isSplashVisible, setIsSplashVisible] = useState(true)
 	const [randomBoolean, setrandomBoolean] = useState(0)
 	const [isLoading, setIsLoading] = useState(false)
 	const [result, setResult] = useState('')
@@ -43,22 +44,44 @@ function App() {
 		}
 	}
 
+	const renderSplashPage = () => {
+		if (!isSplashVisible) return
+		return (
+			<div id='splash'>
+				<div id='quote'>
+					The Many-Worlds Interpretation of quantum mechanics holds that there
+					are many worlds which exist in parallel at the same space and time as
+					our own. The existence of the other worlds makes it possible to remove
+					randomness and action at a distance from quantum theory and thus from
+					all physics.
+				</div>
+				<div id='quote-by'>-- Stanford Encyclopedia of Philosophy</div>
+				<div>
+					This app will contact a quantum random number generator located at The
+					Australian National University in Canberra, splitting the universe
+					(and yourself) into two versions. Which universe will you end up in?
+				</div>
+			</div>
+		)
+	}
+
 	const renderInputs = () => {
 		if (result) return
 		if (isLoading) return
+		if (isSplashVisible) return
 		return (
 			<>
 				<label>
-					WORLD A
 					<input value={inputA} onChange={(e) => setInputA(e.target.value)} />
+					Universe A
 				</label>
 				<label>
-					WORLD B
 					<input
 						placeholder={inputA ? 'Not ' + inputA : ''}
 						value={inputB}
 						onChange={(e) => setInputB(e.target.value)}
 					/>
+					Universe B
 				</label>
 			</>
 		)
@@ -69,12 +92,16 @@ function App() {
 		if (result) {
 			return <button onClick={() => setResult('')}>SPLIT AGAIN</button>
 		}
+		if (isSplashVisible) {
+			return <button onClick={() => setIsSplashVisible(false)}>BEGIN</button>
+		}
 		return <button onClick={fetchrandomBoolean}>SPLIT</button>
 	}
 
 	return (
-		<div className='App'>
-			<h1>World Splitter</h1>
+		<div className='app'>
+			<h1>Universe Splitter</h1>
+			{renderSplashPage()}
 			{renderInputs()}
 			{isLoading ? 'Splitting the Universe...' : result}
 			{renderButton()}
