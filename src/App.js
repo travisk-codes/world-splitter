@@ -10,7 +10,8 @@ function App() {
 	const [inputA, setInputA] = useState('')
 	const [inputB, setInputB] = useState('')
 
-	const fetchrandomBoolean = async () => {
+	const fetchrandomBoolean = async (e) => {
+		e.preventDefault()
 		setIsLoading(true)
 		let startTime = Date.now()
 		try {
@@ -49,12 +50,6 @@ function App() {
 				setResult('Not ' + inputA)
 			}
 		}
-	}
-
-	const resetInputs = () => {
-		setResult('')
-		setInputA('')
-		setInputB('')
 	}
 
 	const renderSplashPage = () => {
@@ -97,20 +92,18 @@ function App() {
 						<div>A</div>
 					</div>
 					<input
-						placeholder={
-							inputB ? 'Not ' + inputB : 'World where I do the dishes'
-						}
+						placeholder={inputB ? 'not ' + inputB : 'do the dishes'}
 						value={inputA}
 						onChange={(e) => setInputA(e.target.value)}
 					/>
 				</label>
 				<label>
 					<div className='earth'>
-						<img src='earth.svg' alt='World B' />
+						<img src='world-splitter/earth.svg' alt='World B' />
 						<div>B</div>
 					</div>
 					<input
-						placeholder={inputA ? 'Not ' + inputA : "World where I don't"}
+						placeholder={inputA ? 'not ' + inputA : 'play videogames'}
 						value={inputB}
 						onChange={(e) => setInputB(e.target.value)}
 					/>
@@ -123,7 +116,7 @@ function App() {
 	const renderButton = () => {
 		if (isLoading) return
 		if (result) {
-			return <button onClick={resetInputs}>SPLIT AGAIN</button>
+			return <button onClick={fetchrandomBoolean}>SPLIT AGAIN</button>
 		}
 		if (isSplashVisible) {
 			return <button onClick={() => setIsSplashVisible(false)}>BEGIN</button>
@@ -147,8 +140,10 @@ function App() {
 					'Splitting the Universe...'
 				) : (
 					<div>
+						<h2>{result}</h2>
 						The world branched in two approximately {delay} milliseconds ago. If
-						you {result}, there will literally be a version of you that doesn't.
+						you do the action above, a real, literal, physical version of you
+						will do the other.
 					</div>
 				)}
 			</div>

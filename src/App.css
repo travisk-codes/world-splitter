@@ -67,11 +67,12 @@ label {
 
 .earth div {
 	position: absolute;
-	top: -2px; /* magic number */
-	left: 10px; /* magic number */
+	top: 0px; /* magic number */
+	left: 8px; /* magic number */
 	font-size: 32px; /*magic number */
 	font-weight: bold;
 	color: white;
+	font-family: sans-serif;
 }
 
 img {
@@ -85,8 +86,18 @@ input {
 
 button {
 	margin: 20px auto;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 0;
 }
 
 #result {
 	padding: 20px;
+	text-align: center;
+	padding: 0 40px;
+}
+
+#result h2 {
+	margin-top: 0;
+	margin-bottom: 20px;
 }
