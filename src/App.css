@@ -14,7 +14,7 @@
 	top: 0;
 	background-image: url('space.jpg');
 	z-index: -1;
-	animation: oscillate 100s linear infinite running;
+	animation: oscillate 100s linear infinite alternate;
 }
 
 .app,
@@ -30,6 +30,7 @@ form {
 #splash {
 	padding: 0 20px;
 	text-align: justify;
+	max-width: 400px;
 }
 
 #splash-button {
@@ -102,6 +103,7 @@ button {
 	padding: 20px;
 	text-align: center;
 	padding: 0 40px;
+	max-width: 400px;
 }
 
 #result h2 {
