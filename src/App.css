@@ -71,16 +71,6 @@ label {
 	display: flex;
 }
 
-.earth div {
-	position: absolute;
-	top: 0px; /* magic number */
-	left: 8px; /* magic number */
-	font-size: 32px; /*magic number */
-	font-weight: bold;
-	color: white;
-	font-family: sans-serif;
-}
-
 img,
 svg {
 	width: 40px;
