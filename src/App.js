@@ -72,12 +72,16 @@ function App() {
 		return (
 			<>
 				<label>
-					<input value={inputA} onChange={(e) => setInputA(e.target.value)} />
+					<input
+						placeholder='Do the dishes'
+						value={inputA}
+						onChange={(e) => setInputA(e.target.value)}
+					/>
 					Universe A
 				</label>
 				<label>
 					<input
-						placeholder={inputA ? 'Not ' + inputA : ''}
+						placeholder={inputA ? 'Not ' + inputA : 'Play videogames'}
 						value={inputB}
 						onChange={(e) => setInputB(e.target.value)}
 					/>
@@ -95,7 +99,11 @@ function App() {
 		if (isSplashVisible) {
 			return <button onClick={() => setIsSplashVisible(false)}>BEGIN</button>
 		}
-		return <button onClick={fetchrandomBoolean}>SPLIT</button>
+		return (
+			<button disabled={inputA ? false : true} onClick={fetchrandomBoolean}>
+				SPLIT
+			</button>
+		)
 	}
 
 	return (
