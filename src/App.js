@@ -65,7 +65,7 @@ function App() {
 					randomness and action at a distance from quantum theory and thus from
 					all physics."
 				</blockquote>
-				<div id='quote-by'>-- Stanford Encyclopedia of Philosophy</div>
+				<div id='quote-by'>― Stanford Encyclopedia of Philosophy</div>
 				<div>
 					This app will contact a quantum random number generator located at The
 					Australian National University in Canberra, splitting the universe
@@ -82,20 +82,26 @@ function App() {
 		return (
 			<>
 				<label>
+					<div className='earth'>
+						<img src='earth.svg' alt='World A' />
+						<div>A</div>
+					</div>
 					<input
-						placeholder={inputB ? 'Not ' + inputB : 'Do the dishes'}
+						placeholder={inputB ? 'Not ' + inputB : 'Universe A'}
 						value={inputA}
 						onChange={(e) => setInputA(e.target.value)}
 					/>
-					Universe A
 				</label>
 				<label>
+					<div className='earth'>
+						<img src='earth.svg' alt='World B' />
+						<div>B</div>
+					</div>
 					<input
-						placeholder={inputA ? 'Not ' + inputA : 'Play videogames'}
+						placeholder={inputA ? 'Not ' + inputA : 'Universe B'}
 						value={inputB}
 						onChange={(e) => setInputB(e.target.value)}
 					/>
-					Universe B
 				</label>
 			</>
 		)

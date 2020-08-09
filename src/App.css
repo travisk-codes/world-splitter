@@ -1,7 +1,12 @@
+body {
+	background-image: url('space.jpg');
+}
+
 .app {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	color: white;
 }
 
 #splash {
@@ -10,7 +15,7 @@
 }
 
 #quote {
-	border-left: 2px solid grey;
+	border-left: 2px solid white;
 	padding-left: 10px;
 	font-style: italic;
 	margin: 0;
@@ -18,14 +23,33 @@
 
 #quote-by {
 	text-align: right;
-	padding-bottom: 20px;
+	padding: 10px 0;
 }
 
 label {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	padding-bottom: 10px;
+}
+
+.earth {
+	position: relative;
+	display: flex;
+}
+
+.earth div {
+	position: absolute;
+	top: -2px; /* magic number */
+	left: 10px; /* magic number */
+	font-size: 32px; /*magic number */
+	font-weight: bold;
+	color: #ce0202;
+}
+
+img {
+	width: 40px;
+	padding-right: 10px;
 }
 
 input {
