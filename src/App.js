@@ -44,6 +44,12 @@ function App() {
 		}
 	}
 
+	const resetInputs = () => {
+		setResult('')
+		setInputA('')
+		setInputB('')
+	}
+
 	const renderSplashPage = () => {
 		if (!isSplashVisible) return
 		return (
@@ -94,7 +100,7 @@ function App() {
 	const renderButton = () => {
 		if (isLoading) return
 		if (result) {
-			return <button onClick={() => setResult('')}>SPLIT AGAIN</button>
+			return <button onClick={resetInputs}>SPLIT AGAIN</button>
 		}
 		if (isSplashVisible) {
 			return <button onClick={() => setIsSplashVisible(false)}>BEGIN</button>
