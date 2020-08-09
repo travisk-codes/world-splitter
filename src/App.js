@@ -69,7 +69,13 @@ function App() {
 				<div>
 					This app will contact a quantum random number generator located at The
 					Australian National University in Canberra, splitting the universe
-					(and yourself) into two versions. Which universe will you end up in?
+					(and yourself) into two versions. Which world will you end up in?
+				</div>
+				<div>
+					Unlike all other interpretations of quantum mechanics, the
+					now-mainstream Many-Worlds or "Everettian" interpretation doesn't
+					require adding non-physical phenomena to the world. It is only what
+					the math describing the universe tells us.
 				</div>
 			</div>
 		)
@@ -87,7 +93,9 @@ function App() {
 						<div>A</div>
 					</div>
 					<input
-						placeholder={inputB ? 'Not ' + inputB : 'Universe A'}
+						placeholder={
+							inputB ? 'Not ' + inputB : 'Universe where I do the dishes'
+						}
 						value={inputA}
 						onChange={(e) => setInputA(e.target.value)}
 					/>
@@ -98,7 +106,7 @@ function App() {
 						<div>B</div>
 					</div>
 					<input
-						placeholder={inputA ? 'Not ' + inputA : 'Universe B'}
+						placeholder={inputA ? 'Not ' + inputA : "Universe where I don't"}
 						value={inputB}
 						onChange={(e) => setInputB(e.target.value)}
 					/>
