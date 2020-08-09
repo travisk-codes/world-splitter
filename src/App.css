@@ -17,7 +17,8 @@
 	animation: oscillate 100s linear infinite running;
 }
 
-.app {
+.app,
+form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -27,6 +28,10 @@
 #splash {
 	padding: 0 20px;
 	text-align: justify;
+}
+
+#splash-button {
+	text-align: right;
 }
 
 #splash div {

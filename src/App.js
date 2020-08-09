@@ -80,6 +80,9 @@ function App() {
 					require adding non-physical phenomena to the world. It is only what
 					the math describing the universe tells us.
 				</div>
+				<div id='splash-button'>
+					<button onClick={() => setIsSplashVisible(false)}>CONTINUE</button>
+				</div>
 			</div>
 		)
 	}
@@ -87,10 +90,10 @@ function App() {
 	const renderInputs = () => {
 		if (isSplashVisible) return
 		return (
-			<>
+			<form onSubmit={fetchrandomBoolean}>
 				<label>
 					<div className='earth'>
-						<img src='earth.svg' alt='World A' />
+						<img src='world-splitter/earth.svg' alt='World A' />
 						<div>A</div>
 					</div>
 					<input
@@ -112,7 +115,8 @@ function App() {
 						onChange={(e) => setInputB(e.target.value)}
 					/>
 				</label>
-			</>
+				{renderButton()}
+			</form>
 		)
 	}
 
@@ -135,6 +139,7 @@ function App() {
 	}
 
 	const renderResult = () => {
+		if (isLoading) return 'Splitting the universe...'
 		if (!result) return
 		return (
 			<div id='result'>
@@ -142,8 +147,8 @@ function App() {
 					'Splitting the Universe...'
 				) : (
 					<div>
-						The world branched in two ~{delay} milliseconds ago. If you {result}
-						, there will literally be a version of you that doesn't.
+						The world branched in two approximately {delay} milliseconds ago. If
+						you {result}, there will literally be a version of you that doesn't.
 					</div>
 				)}
 			</div>
@@ -155,7 +160,6 @@ function App() {
 			<h1>Universe Splitter</h1>
 			{renderSplashPage()}
 			{renderInputs()}
-			{renderButton()}
 			{renderResult()}
 			<div id='background' />
 		</div>
