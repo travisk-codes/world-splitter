@@ -12,6 +12,8 @@
 #quote {
 	border-left: 2px solid grey;
 	padding-left: 10px;
+	font-style: italic;
+	margin: 0;
 }
 
 #quote-by {

@@ -54,13 +54,13 @@ function App() {
 		if (!isSplashVisible) return
 		return (
 			<div id='splash'>
-				<div id='quote'>
-					The Many-Worlds Interpretation of quantum mechanics holds that there
+				<blockquote id='quote'>
+					"The Many-Worlds Interpretation of quantum mechanics holds that there
 					are many worlds which exist in parallel at the same space and time as
 					our own. The existence of the other worlds makes it possible to remove
 					randomness and action at a distance from quantum theory and thus from
-					all physics.
-				</div>
+					all physics."
+				</blockquote>
 				<div id='quote-by'>-- Stanford Encyclopedia of Philosophy</div>
 				<div>
 					This app will contact a quantum random number generator located at The
