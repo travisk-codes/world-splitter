@@ -51,6 +51,10 @@ form {
 	text-align: right;
 }
 
+a {
+	color: white;
+}
+
 h1 {
 	font-size: 36px;
 }
@@ -77,8 +81,10 @@ label {
 	font-family: sans-serif;
 }
 
-img {
+img,
+svg {
 	width: 40px;
+	height: 40px;
 	padding-right: 10px;
 }
 
