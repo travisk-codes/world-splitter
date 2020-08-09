@@ -109,6 +109,9 @@ function App() {
 					/>
 				</label>
 				{renderButton()}
+				<button id='about' onClick={() => setIsSplashVisible(true)}>
+					ABOUT
+				</button>
 			</form>
 		)
 	}
@@ -132,16 +135,17 @@ function App() {
 	}
 
 	const renderResult = () => {
+		if (isSplashVisible) return
 		if (isLoading) return <div id='loading'>{'Splitting the Universe...'}</div>
 		if (!result) return
 		return (
 			<div id='result'>
 				<div>
 					<h2>{result}</h2>
-					The world branched in two approximately {Math.round(delay / 2) /
-						1000}{' '}
-					seconds ago. If you promised to do the resulting action, a real,
-					literal, physical version of you will do the other.
+					The world branched in two approximately{' '}
+					{Math.round(delay / 2 / 100) / 10} seconds ago. If you promised to do
+					the resulting action, a real, literal, physical version of you will do
+					the other.
 				</div>
 			</div>
 		)
