@@ -82,8 +82,6 @@ function App() {
 	}
 
 	const renderInputs = () => {
-		if (result) return
-		if (isLoading) return
 		if (isSplashVisible) return
 		return (
 			<>
@@ -94,7 +92,7 @@ function App() {
 					</div>
 					<input
 						placeholder={
-							inputB ? 'Not ' + inputB : 'Universe where I do the dishes'
+							inputB ? 'Not ' + inputB : 'World where I do the dishes'
 						}
 						value={inputA}
 						onChange={(e) => setInputA(e.target.value)}
@@ -106,7 +104,7 @@ function App() {
 						<div>B</div>
 					</div>
 					<input
-						placeholder={inputA ? 'Not ' + inputA : "Universe where I don't"}
+						placeholder={inputA ? 'Not ' + inputA : "World where I don't"}
 						value={inputB}
 						onChange={(e) => setInputB(e.target.value)}
 					/>
@@ -138,8 +136,9 @@ function App() {
 			<h1>Universe Splitter</h1>
 			{renderSplashPage()}
 			{renderInputs()}
-			{isLoading ? 'Splitting the Universe...' : result}
 			{renderButton()}
+			<div id='result'>{isLoading ? 'Splitting the Universe...' : result}</div>
+			<div id='background' />
 		</div>
 	)
 }

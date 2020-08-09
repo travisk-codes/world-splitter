@@ -6,3 +6,7 @@
 - make background go back and forth
 - be able to press back to go to splash page
 - link to bottom that says explanation
+- cite now-mainstream
+- add links and such to about page
+- store splash state in localStorage
+- BUG not really looping bg
