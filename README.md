@@ -10,3 +10,4 @@
 - add links and such to about page
 - store splash state in localStorage
 - BUG not really looping bg
+- say the world split ~X ns

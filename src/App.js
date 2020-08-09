@@ -6,11 +6,13 @@ function App() {
 	const [randomBoolean, setrandomBoolean] = useState(0)
 	const [isLoading, setIsLoading] = useState(false)
 	const [result, setResult] = useState('')
+	const [delay, setDelay] = useState(0)
 	const [inputA, setInputA] = useState('')
 	const [inputB, setInputB] = useState('')
 
 	const fetchrandomBoolean = async () => {
 		setIsLoading(true)
+		let startTime = Date.now()
 		try {
 			const response = await fetch(
 				`https://qrng.anu.edu.au/API/jsonI.php?length=1&type=uint8`,
@@ -22,6 +24,7 @@ function App() {
 				setrandomBoolean(1)
 			}
 			setIsLoading(false)
+			setDelay(Date.now() - startTime)
 			getResult()
 		} catch (e) {
 			console.error(e.name, e.message)
@@ -131,13 +134,29 @@ function App() {
 		)
 	}
 
+	const renderResult = () => {
+		if (!result) return
+		return (
+			<div id='result'>
+				{isLoading ? (
+					'Splitting the Universe...'
+				) : (
+					<div>
+						The world branched in two ~{delay} milliseconds ago. If you {result}
+						, there will literally be a version of you that doesn't.
+					</div>
+				)}
+			</div>
+		)
+	}
+
 	return (
 		<div className='app'>
 			<h1>Universe Splitter</h1>
 			{renderSplashPage()}
 			{renderInputs()}
 			{renderButton()}
-			<div id='result'>{isLoading ? 'Splitting the Universe...' : result}</div>
+			{renderResult()}
 			<div id='background' />
 		</div>
 	)
