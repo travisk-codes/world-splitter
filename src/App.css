@@ -82,13 +82,16 @@ img {
 
 input {
 	width: 200px;
+	height: 32px;
 }
 
 button {
 	margin: 20px auto;
-	font-size: 18px;
 	font-weight: bold;
-	padding: 0;
+	padding: 10px;
+	background-color: white;
+	border: none;
+	border-radius: 5px;
 }
 
 #result {
@@ -100,4 +103,9 @@ button {
 #result h2 {
 	margin-top: 0;
 	margin-bottom: 20px;
+}
+
+#loading {
+	font-weight: bold;
+	padding-top: 30px;
 }

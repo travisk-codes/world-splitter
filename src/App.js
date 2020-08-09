@@ -41,13 +41,13 @@ function App() {
 			if (inputA) {
 				setResult(inputA)
 			} else {
-				setResult('Not ' + inputB)
+				setResult('not ' + inputB)
 			}
 		} else {
 			if (inputB) {
 				setResult(inputB)
 			} else {
-				setResult('Not ' + inputA)
+				setResult('not ' + inputA)
 			}
 		}
 	}
@@ -132,20 +132,17 @@ function App() {
 	}
 
 	const renderResult = () => {
-		if (isLoading) return 'Splitting the universe...'
+		if (isLoading) return <div id='loading'>{'Splitting the Universe...'}</div>
 		if (!result) return
 		return (
 			<div id='result'>
-				{isLoading ? (
-					'Splitting the Universe...'
-				) : (
-					<div>
-						<h2>{result}</h2>
-						The world branched in two approximately {delay} milliseconds ago. If
-						you do the action above, a real, literal, physical version of you
-						will do the other.
-					</div>
-				)}
+				<div>
+					<h2>{result}</h2>
+					The world branched in two approximately {Math.round(delay / 2) /
+						1000}{' '}
+					seconds ago. If you promised to do the resulting action, a real,
+					literal, physical version of you will do the other.
+				</div>
 			</div>
 		)
 	}
