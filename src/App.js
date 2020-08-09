@@ -34,7 +34,11 @@ function App() {
 			return
 		}
 		if (randomBoolean) {
-			setResult(inputA)
+			if (inputA) {
+				setResult(inputA)
+			} else {
+				setResult('Not ' + inputB)
+			}
 		} else {
 			if (inputB) {
 				setResult(inputB)
@@ -79,7 +83,7 @@ function App() {
 			<>
 				<label>
 					<input
-						placeholder='Do the dishes'
+						placeholder={inputB ? 'Not ' + inputB : 'Do the dishes'}
 						value={inputA}
 						onChange={(e) => setInputA(e.target.value)}
 					/>
@@ -106,7 +110,10 @@ function App() {
 			return <button onClick={() => setIsSplashVisible(false)}>BEGIN</button>
 		}
 		return (
-			<button disabled={inputA ? false : true} onClick={fetchrandomBoolean}>
+			<button
+				disabled={inputA || inputB ? false : true}
+				onClick={fetchrandomBoolean}
+			>
 				SPLIT
 			</button>
 		)
