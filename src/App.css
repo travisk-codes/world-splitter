@@ -33,6 +33,5 @@ input {
 }
 
 button {
-	position: fixed;
-	bottom: 40px;
+	margin: 20px auto;
 }
