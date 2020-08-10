@@ -9,6 +9,7 @@ function App() {
 	const [randomBoolean, setrandomBoolean] = useState(0)
 	const [isLoading, setIsLoading] = useState(false)
 	const [result, setResult] = useState('')
+	const [otherOption, setOtherOption] = useState('')
 	const [delay, setDelay] = useState(0)
 	const [inputA, setInputA] = useState('')
 	const [inputB, setInputB] = useState('')
@@ -37,20 +38,24 @@ function App() {
 
 	const getResult = () => {
 		if (!inputA && !inputB) {
-			setResult('')
+			setResult('do the dishes')
 			return
 		}
 		if (randomBoolean) {
 			if (inputA) {
 				setResult(inputA)
+				setOtherOption(inputB)
 			} else {
 				setResult('not ' + inputB)
+				setOtherOption(inputB)
 			}
 		} else {
 			if (inputB) {
 				setResult(inputB)
+				setOtherOption(inputA)
 			} else {
 				setResult('not ' + inputA)
+				setOtherOption(inputA)
 			}
 		}
 	}
@@ -219,14 +224,15 @@ function App() {
 
 	const renderResult = () => {
 		if (isSplashVisible) return
-		if (isLoading) return <div id='loading'>{'Splitting the Universe...'}</div>
+		if (isLoading) return <div id='loading'>{'SPLITTING THE UNIVERSE...'}</div>
 		if (!result) return
 		return (
 			<div id='result'>
 				<div>
-					<h2>{result}</h2>
+					<h2>You should {result}</h2>
 					The world branched in two approximately{' '}
-					{Math.round(delay / 2 / 100) / 10} seconds ago.
+					{Math.round(delay / 2 / 100) / 10} seconds ago. A version of you has
+					just been informed that they should {otherOption}.
 				</div>
 			</div>
 		)
@@ -240,7 +246,7 @@ function App() {
 			{renderResult()}
 			{isSplashVisible ? null : (
 				<button id='about' onClick={() => setIsSplashVisible(true)}>
-					ABOUT
+					EXPLANATION
 				</button>
 			)}
 
