@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 import './App.css'
 
 function App() {
-	const [isSplashVisible, setIsSplashVisible] = useState(true)
+	const splashState = localStorage.getItem('world-splitter-splash')
+		? false
+		: true
+	const [isSplashVisible, setIsSplashVisible] = useState(splashState)
 	const [randomBoolean, setrandomBoolean] = useState(0)
 	const [isLoading, setIsLoading] = useState(false)
 	const [result, setResult] = useState('')
@@ -114,7 +117,14 @@ function App() {
 					describing the universe tells us.
 				</div>
 				<div id='splash-button'>
-					<button onClick={() => setIsSplashVisible(false)}>CONTINUE</button>
+					<button
+						onClick={() => {
+							localStorage.setItem('world-splitter-splash', true)
+							setIsSplashVisible(false)
+						}}
+					>
+						CONTINUE
+					</button>
 				</div>
 			</div>
 		)
