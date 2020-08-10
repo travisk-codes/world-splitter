@@ -7,12 +7,18 @@
 	}
 }
 
+html {
+	font-size: calc(0.5em + 1vw);
+	margin: 0;
+	padding: 0;
+}
+
 #background {
 	position: fixed;
 	width: 100%;
 	height: 100%;
 	top: 0;
-	background-image: url('space.jpg');
+	background-image: url('space2.jpg');
 	z-index: -1;
 	animation: oscillate 100s linear infinite alternate;
 }
@@ -28,13 +34,13 @@ form {
 	align-items: center;
 	color: white;
 	padding: 0;
-	margin: 0;
 }
 
 #splash {
 	padding: 0 20px;
 	text-align: justify;
 	max-width: 400px;
+	line-height: 150%;
 }
 
 #splash-button {
@@ -125,13 +131,12 @@ button {
 }
 
 button#about {
-	position: fixed;
-	bottom: 10px;
-	left: 10px;
 	margin: 0;
 	border: 1px solid white;
 	color: white;
 	background-color: #0000;
+	margin: 20px;
+	align-self: flex-start;
 }
 
 @media (min-width: 500px) {

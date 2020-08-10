@@ -100,8 +100,10 @@ function App() {
 					>
 						The Australian National University in Canberra
 					</a>
-					, splitting the universe (and yourself) into two versions. Which world
-					will you end up in?
+					, splitting the universe (and yourself) into two versions. If you
+					promise to do the resulting action no matter the outcome a real,
+					literal, physical version of you will do the other. Which world will
+					you end up in?
 				</div>
 				<div>
 					Unlike all other interpretations of quantum mechanics, the{' '}
@@ -193,9 +195,6 @@ function App() {
 					/>
 				</label>
 				{renderButton()}
-				<button id='about' onClick={() => setIsSplashVisible(true)}>
-					ABOUT
-				</button>
 			</form>
 		)
 	}
@@ -227,9 +226,7 @@ function App() {
 				<div>
 					<h2>{result}</h2>
 					The world branched in two approximately{' '}
-					{Math.round(delay / 2 / 100) / 10} seconds ago. If you promised to do
-					the resulting action, a real, literal, physical version of you will do
-					the other.
+					{Math.round(delay / 2 / 100) / 10} seconds ago.
 				</div>
 			</div>
 		)
@@ -241,6 +238,12 @@ function App() {
 			{renderSplashPage()}
 			{renderInputs()}
 			{renderResult()}
+			{isSplashVisible ? null : (
+				<button id='about' onClick={() => setIsSplashVisible(true)}>
+					ABOUT
+				</button>
+			)}
+
 			<div id='background' />
 		</div>
 	)

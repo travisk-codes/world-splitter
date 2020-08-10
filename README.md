@@ -14,3 +14,5 @@
 - pre-load svgs
 - BUG splash button loads before the rest
 - ~~replace favicon~~
+- make bg animate for wide screens
+-
