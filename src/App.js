@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import './App.css'
 
 function App() {
-	const splashState = localStorage.getItem('world-splitter-splash')
+	const splashState = localStorage.getItem('should-show-splash-page-first')
 		? false
 		: true
 	const [isSplashVisible, setIsSplashVisible] = useState(splashState)
-	const [randomBoolean, setrandomBoolean] = useState(0)
+	const [options, setOptions] = useState({})
 	const [isLoading, setIsLoading] = useState(false)
-	const [result, setResult] = useState('')
-	const [otherOption, setOtherOption] = useState('')
 	const [delay, setDelay] = useState(0)
 	const [inputA, setInputA] = useState('')
 	const [inputB, setInputB] = useState('')
@@ -23,40 +21,21 @@ function App() {
 				`https://qrng.anu.edu.au/API/jsonI.php?length=1&type=uint8`,
 			)
 			const json = await response.json()
-			if (json.data[0] < 128) {
-				setrandomBoolean(0)
-			} else {
-				setrandomBoolean(1)
-			}
 			setIsLoading(false)
+			if (json.data[0] < 128) {
+				setOptions({
+					self: inputA.length ? inputA : 'not ' + inputB,
+					copy: inputB.length ? inputB : 'not ' + inputA,
+				})
+			} else {
+				setOptions({
+					self: inputB.length ? inputB : 'not ' + inputA,
+					copy: inputA.length ? inputA : 'not ' + inputB,
+				})
+			}
 			setDelay(Date.now() - startTime)
-			getResult()
 		} catch (e) {
 			console.error(e.name, e.message)
-		}
-	}
-
-	const getResult = () => {
-		if (!inputA && !inputB) {
-			setResult('do the dishes')
-			return
-		}
-		if (randomBoolean) {
-			if (inputA) {
-				setResult(inputA)
-				setOtherOption(inputB)
-			} else {
-				setResult('not ' + inputB)
-				setOtherOption(inputB)
-			}
-		} else {
-			if (inputB) {
-				setResult(inputB)
-				setOtherOption(inputA)
-			} else {
-				setResult('not ' + inputA)
-				setOtherOption(inputA)
-			}
 		}
 	}
 
@@ -126,7 +105,7 @@ function App() {
 				<div id='splash-button'>
 					<button
 						onClick={() => {
-							localStorage.setItem('world-splitter-splash', true)
+							localStorage.setItem('should-show-splash-page-first', true)
 							setIsSplashVisible(false)
 						}}
 					>
@@ -138,7 +117,7 @@ function App() {
 	}
 
 	const renderInputs = () => {
-		if (isSplashVisible) return
+		if (isSplashVisible) return null
 		return (
 			<form onSubmit={fetchrandomBoolean}>
 				<label>
@@ -199,41 +178,31 @@ function App() {
 						onChange={(e) => setInputB(e.target.value)}
 					/>
 				</label>
-				{renderButton()}
+				<button
+					disabled={inputA || inputB ? false : true}
+					onClick={fetchrandomBoolean}
+				>
+					SPLIT
+				</button>
 			</form>
-		)
-	}
-
-	const renderButton = () => {
-		if (isLoading) return
-		if (result) {
-			return <button onClick={fetchrandomBoolean}>SPLIT AGAIN</button>
-		}
-		if (isSplashVisible) {
-			return <button onClick={() => setIsSplashVisible(false)}>BEGIN</button>
-		}
-		return (
-			<button
-				disabled={inputA || inputB ? false : true}
-				onClick={fetchrandomBoolean}
-			>
-				SPLIT
-			</button>
 		)
 	}
 
 	const renderResult = () => {
 		if (isSplashVisible) return
-		if (isLoading) return <div id='loading'>{'SPLITTING THE UNIVERSE...'}</div>
-		if (!result) return
+		if (isLoading)
+			return (
+				<div id='result'>
+					<h2 id=''>{'Splitting The Universe...'}</h2>
+				</div>
+			)
+		if (!options.self) return
 		return (
 			<div id='result'>
-				<div>
-					<h2>You should {result}</h2>
-					The world branched in two approximately{' '}
-					{Math.round(delay / 2 / 100) / 10} seconds ago. A version of you has
-					just been informed that they should {otherOption}.
-				</div>
+				<h2>You should {options.self}</h2>
+				The world branched in two approximately{' '}
+				{Math.round(delay / 2 / 100) / 10} seconds ago. <br />A version of you
+				has just been informed that they should {options.copy}.
 			</div>
 		)
 	}
@@ -244,6 +213,7 @@ function App() {
 			{renderSplashPage()}
 			{renderInputs()}
 			{renderResult()}
+
 			{isSplashVisible ? null : (
 				<button id='about' onClick={() => setIsSplashVisible(true)}>
 					EXPLANATION

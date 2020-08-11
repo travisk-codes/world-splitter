@@ -9,6 +9,7 @@
 
 html {
 	font-size: calc(0.5em + 1vw);
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
@@ -45,7 +46,7 @@ form {
 }
 
 #splash-button {
-	text-align: right;
+	text-align: center;
 }
 
 #splash div {
@@ -54,7 +55,7 @@ form {
 
 #quote {
 	border-left: 0.1em solid white;
-	padding-left: 0.5rem;
+	padding-left: 1rem;
 	font-style: italic;
 	margin: 0;
 }
@@ -87,9 +88,9 @@ label {
 }
 
 svg {
-	width: 3.5rem;
-	height: 3.5rem;
-	padding-right: 1rem;
+	width: 3rem;
+	height: 3rem;
+	padding-right: 0.75rem;
 	user-select: none;
 }
 
@@ -100,10 +101,12 @@ input {
 	border: none;
 	padding-left: 1rem;
 	font-size: 1.4rem;
+	box-shadow: 0 1px 0.25rem black inset;
 }
 
 button {
-	margin: 2rem auto;
+	margin-bottom: 1rem;
+	margin-top: 2rem;
 	font-weight: bold;
 	padding: 0.5rem;
 	background-color: white;
@@ -114,26 +117,33 @@ button {
 	background-color: #0000;
 	cursor: pointer;
 	font-size: 1.4rem;
-	width: 26rem;
+	width: 24.75rem;
+	background-color: #fff2;
+}
+
+button:disabled {
+	color: #fffa;
+	background-color: #fff0;
+	cursor: unset;
 }
 
 #result {
-	padding: 0 2rem;
-	max-width: 20rem;
-	font-size: 1.4rem;
 	margin-bottom: 2rem;
-	text-align: justify;
+	max-width: 24rem;
+	font-size: 1.4rem;
+	text-align: center;
 }
 
-#result h2 {
+h2 {
 	text-align: center;
 	margin-top: 0;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
 }
 
 #loading {
-	font-size: 1.4rem;
-	padding: 1.5rem;
+	margin-top: 2rem;
+	margin-bottom: 0.5rem;
+	padding: 0.5rem;
 	font-weight: bold;
 }
 
@@ -141,11 +151,9 @@ button#about {
 	margin: 0;
 	border: 1px solid white;
 	color: white;
-	background-color: #0000;
-	margin: 1rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
 	html {
 		font-size: calc(0.25em + 1vw);
 	}
