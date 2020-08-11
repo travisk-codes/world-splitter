@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
 import './App.css'
 
+function formatOutput(anInput, aMap){
+	let res = anInput.split(" ");
+	res = res.map(s => {
+		return (s in aMap) ? aMap[s] : s
+	});
+	return res.join(" ")
+}
+
 function App() {
 	const splashState = localStorage.getItem('should-show-splash-page-first')
 		? false
@@ -13,12 +21,21 @@ function App() {
 	const [inputA, setInputA] = useState('')
 	const [inputB, setInputB] = useState('')
 
+	//you  can add more to these as you find strange edge cases
+	const selfReplyMap = {
+		my:"your",
+		your:"their"
+	}
+
+	const copyReplyMap = {
+		my:"their",
+		your:"their"
+	}
+
 	const fetchrandomBoolean = async (e) => {
 		e.preventDefault()
 		setIsLoading(true)
 		let startTime = Date.now()
-		
-
 		try {
 			const response = await fetch(
 				`https://qrng.anu.edu.au/API/jsonI.php?length=1&type=uint8`,
@@ -226,10 +243,10 @@ function App() {
 		if (!options.self) return
 		return (
 			<div id='result'>
-				<h2>You should {options.self.replace("my", "your")}</h2>
+				<h2>You should {formatOutput(options.self, selfReplyMap)}</h2>
 				The world branched in two approximately{' '}
 				{Math.round(delay / 2 / 100) / 10} seconds ago. <br />A version of you
-				has just been informed that they should {options.copy.replace("my", "their")}.
+				has just been informed that they should {formatOutput(options.copy, copyReplyMap)}.
 			</div>
 		)
 	}
