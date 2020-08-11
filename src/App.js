@@ -17,6 +17,8 @@ function App() {
 		e.preventDefault()
 		setIsLoading(true)
 		let startTime = Date.now()
+		
+
 		try {
 			const response = await fetch(
 				`https://qrng.anu.edu.au/API/jsonI.php?length=1&type=uint8`,
@@ -224,10 +226,10 @@ function App() {
 		if (!options.self) return
 		return (
 			<div id='result'>
-				<h2>You should {options.self}</h2>
+				<h2>You should {options.self.replace("my", "your")}</h2>
 				The world branched in two approximately{' '}
 				{Math.round(delay / 2 / 100) / 10} seconds ago. <br />A version of you
-				has just been informed that they should {options.copy}.
+				has just been informed that they should {options.copy.replace("my", "their")}.
 			</div>
 		)
 	}
