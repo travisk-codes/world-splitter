@@ -122,12 +122,30 @@ function App() {
 		return (
 			<div id='splash'>
 				World Splitter is made by Travis Kohlbeck. You can donate to their{' '}
-				<a href='https://www.patreon.com/travisk_creates'>Patreon</a> or if you
-				are looking to hire, check out their{' '}
-				<a href='https://hire.travisk.info'>portfolio</a>. The source code can
-				be found on{' '}
-				<a href='https://github.com/travisk-codes/world-splitter'>GitHub</a>.
-				Thanks for visiting! ❤️
+				<a
+					target='_blank'
+					rel='noopener noreferrer'
+					href='https://www.patreon.com/travisk_creates'
+				>
+					Patreon
+				</a>{' '}
+				or if you are looking to hire, check out their{' '}
+				<a
+					target='_blank'
+					rel='noopener noreferrer'
+					href='https://hire.travisk.info'
+				>
+					portfolio
+				</a>
+				. The source code can be found on{' '}
+				<a
+					target='_blank'
+					rel='noopener noreferrer'
+					href='https://github.com/travisk-codes/world-splitter'
+				>
+					GitHub
+				</a>
+				. Thanks for visiting! ❤️
 				<div id='splash-button'>
 					<button
 						onClick={() => {
@@ -214,7 +232,7 @@ function App() {
 	}
 
 	const renderResult = () => {
-		if (isSplashVisible) return
+		if (isSplashVisible || isAboutVisible) return
 		if (isLoading)
 			return (
 				<div id='result'>
