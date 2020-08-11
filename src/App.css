@@ -3,7 +3,7 @@
 		background-position: 0 0;
 	}
 	to {
-		background-position: 100% 0;
+		background-position: 1000px 0;
 	}
 }
 
@@ -22,6 +22,7 @@ html {
 	background-image: url('space2.jpg');
 	z-index: -1;
 	animation: oscillate 100s linear infinite alternate;
+	background-repeat: repeat;
 }
 
 body {
@@ -147,10 +148,18 @@ h2 {
 	font-weight: bold;
 }
 
-button#about {
+button#explanation {
 	margin: 0;
 	border: 1px solid white;
 	color: white;
+}
+
+button#about {
+	margin: 1rem 0;
+}
+
+#buttons {
+	width: 24.75rem;
 }
 
 @media (min-width: 768px) {

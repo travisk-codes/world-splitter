@@ -6,6 +6,7 @@ function App() {
 		? false
 		: true
 	const [isSplashVisible, setIsSplashVisible] = useState(splashState)
+	const [isAboutVisible, setIsAboutVisible] = useState(false)
 	const [options, setOptions] = useState({})
 	const [isLoading, setIsLoading] = useState(false)
 	const [delay, setDelay] = useState(0)
@@ -116,8 +117,32 @@ function App() {
 		)
 	}
 
+	const renderAboutPage = () => {
+		if (!isAboutVisible) return
+		return (
+			<div id='splash'>
+				World Splitter is made by Travis Kohlbeck. You can donate to their{' '}
+				<a href='https://www.patreon.com/travisk_creates'>Patreon</a> or if you
+				are looking to hire, check out their{' '}
+				<a href='https://hire.travisk.info'>portfolio</a>. The source code can
+				be found on{' '}
+				<a href='https://github.com/travisk-codes/world-splitter'>GitHub</a>.
+				Thanks for visiting! ❤️
+				<div id='splash-button'>
+					<button
+						onClick={() => {
+							setIsAboutVisible(false)
+						}}
+					>
+						BACK
+					</button>
+				</div>
+			</div>
+		)
+	}
+
 	const renderInputs = () => {
-		if (isSplashVisible) return null
+		if (isSplashVisible || isAboutVisible) return null
 		return (
 			<form onSubmit={fetchrandomBoolean}>
 				<label>
@@ -211,13 +236,20 @@ function App() {
 		<div className='app'>
 			<h1>Universe Splitter</h1>
 			{renderSplashPage()}
+			{renderAboutPage()}
 			{renderInputs()}
 			{renderResult()}
 
-			{isSplashVisible ? null : (
-				<button id='about' onClick={() => setIsSplashVisible(true)}>
-					EXPLANATION
-				</button>
+			{isSplashVisible || isAboutVisible ? null : (
+				<div id='buttons'>
+					<button id='explanation' onClick={() => setIsSplashVisible(true)}>
+						EXPLANATION
+					</button>
+
+					<button id='about' onClick={() => setIsAboutVisible(true)}>
+						ABOUT
+					</button>
+				</div>
 			)}
 
 			<div id='background' />
