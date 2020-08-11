@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import './App.css'
 
 function formatOutput(anInput, aMap){
-	let res = anInput.split(" ");
-	res = res.map(s => {
+	return anInput.split(" ").map(s => {
 		return (s in aMap) ? aMap[s] : s
-	});
-	return res.join(" ")
+	}).join(" ");
 }
 
 function App() {
