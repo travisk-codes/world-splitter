@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import './App.css'
 
+function formatOutput(anInput, aMap){
+	return anInput.split(" ").map(s => {
+		return (s in aMap) ? aMap[s] : s
+	}).join(" ");
+}
+
 function App() {
 	const splashState = localStorage.getItem('should-show-splash-page-first')
 		? false
@@ -12,6 +18,17 @@ function App() {
 	const [delay, setDelay] = useState(0)
 	const [inputA, setInputA] = useState('')
 	const [inputB, setInputB] = useState('')
+
+	//you  can add more to these as you find strange edge cases
+	const selfReplyMap = {
+		my:"your",
+		your:"their"
+	}
+
+	const copyReplyMap = {
+		my:"their",
+		your:"their"
+	}
 
 	const fetchrandomBoolean = async (e) => {
 		e.preventDefault()
@@ -242,10 +259,10 @@ function App() {
 		if (!options.self) return
 		return (
 			<div id='result'>
-				<h2>You should {options.self}</h2>
+				<h2>You should {formatOutput(options.self, selfReplyMap)}</h2>
 				The world branched in two approximately{' '}
 				{Math.round(delay / 2 / 100) / 10} seconds ago. <br />A version of you
-				has just been informed that they should {options.copy}.
+				has just been informed that they should {formatOutput(options.copy, copyReplyMap)}.
 			</div>
 		)
 	}
