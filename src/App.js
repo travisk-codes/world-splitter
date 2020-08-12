@@ -1,11 +1,31 @@
 import React, { useState } from 'react'
 import './App.css'
 
-function formatOutput(anInput, aMap){
-	return anInput.split(" ").map(s => {
-		return (s in aMap) ? aMap[s] : s
-	}).join(" ");
+function formatOutput(anInput, aMap) {
+	return anInput
+		.split(' ')
+		.map((s) => {
+			return s in aMap ? aMap[s] : s
+		})
+		.join(' ')
 }
+const spoiledOptions = [
+	'play videogames',
+	'take a nap',
+	'make a sandwich',
+	'eat some ice cream',
+	'watch TV',
+	'browse the internet',
+]
+
+const healthyOptions = [
+	'read a book',
+	'take a walk',
+	'do the dishes',
+	'take out the trash',
+	'call a loved one',
+	'do some exercising',
+]
 
 function App() {
 	const splashState = localStorage.getItem('should-show-splash-page-first')
@@ -21,13 +41,13 @@ function App() {
 
 	//you  can add more to these as you find strange edge cases
 	const selfReplyMap = {
-		my:"your",
-		your:"their"
+		my: 'your',
+		your: 'their',
 	}
 
 	const copyReplyMap = {
-		my:"their",
-		your:"their"
+		my: 'their',
+		your: 'their',
 	}
 
 	const fetchrandomBoolean = async (e) => {
@@ -103,8 +123,8 @@ function App() {
 						The Australian National University in Canberra
 					</a>
 					, splitting the universe (and yourself) into two versions. If you
-					promise to do the resulting action no matter the outcome a real,
-					literal, physical version of you will do the other. Which world will
+					promise to do the resulting action no matter the outcome, a real,
+					physical, literal version of you will do the other. Which world will
 					you end up in?
 				</div>
 				<div>
@@ -138,7 +158,7 @@ function App() {
 		if (!isAboutVisible) return
 		return (
 			<div id='splash'>
-				World Splitter is made by Travis Kohlbeck. You can donate to their{' '}
+				Universe Splitter is made by Travis Kohlbeck. You can donate to their{' '}
 				<a
 					target='_blank'
 					rel='noopener noreferrer'
@@ -204,7 +224,11 @@ function App() {
 						</svg>
 					</div>
 					<input
-						placeholder={inputB ? 'not ' + inputB : 'do the dishes'}
+						placeholder={
+							inputB
+								? 'not ' + inputB
+								: healthyOptions[Math.floor(Math.random() * 6)]
+						}
 						value={inputA}
 						onChange={(e) => setInputA(e.target.value)}
 					/>
@@ -233,7 +257,11 @@ function App() {
 						</svg>{' '}
 					</div>
 					<input
-						placeholder={inputA ? 'not ' + inputA : 'play videogames'}
+						placeholder={
+							inputA
+								? 'not ' + inputA
+								: spoiledOptions[Math.floor(Math.random() * 6)]
+						}
 						value={inputB}
 						onChange={(e) => setInputB(e.target.value)}
 					/>
@@ -261,8 +289,9 @@ function App() {
 			<div id='result'>
 				<h2>You should {formatOutput(options.self, selfReplyMap)}</h2>
 				The world branched in two approximately{' '}
-				{Math.round(delay / 2 / 100) / 10} seconds ago. <br />A version of you
-				has just been informed that they should {formatOutput(options.copy, copyReplyMap)}.
+				{Math.round(delay / 2 / 100) / 10} seconds ago. <br />A copy of you has
+				just been informed that they should{' '}
+				{formatOutput(options.copy, copyReplyMap)}.
 			</div>
 		)
 	}
